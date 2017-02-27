@@ -130,15 +130,7 @@ TARGET_LINK_LIBRARIES(${PCL_LIBRARIES})
 #include <pcl/segmentation/extract_clusters.h>
 ```
 #### Load PointCloud in cpp project
-'''cpp
-CloudPointer loadCloudFromPath(std::string vPath){
-    CloudPointer curCloud(new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::PCLPointCloud2 cloud_blob;
-    pcl::io::loadPCDFile(vPath.c_str(), cloud_blob);
-    pcl::fromPCLPointCloud2(cloud_blob, *curCloud);
-    return curCloud;
-}
-'''
+
 
 
 
