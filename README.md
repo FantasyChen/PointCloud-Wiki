@@ -11,7 +11,8 @@ Reference: [Prebuilt binaries for Linux](http://pointclouds.org/downloads/linux.
 ```
 sudo add-apt-repository ppa:v-launchpad-jochen-sprickerhof-de/pcl
 sudo apt-get update
-sudo apt-get install libpcl-all```
+sudo apt-get install libpcl-all
+```
 
 
 ### Debian
@@ -53,7 +54,8 @@ sudo apt-get install build-essential libxmu-dev libxi-dev
 sudo apt-get install libusb-1-0-dev graphviz mono-complete
 sudo apt-get install qt-sdk openjdk-7-jdk openjdk-7-jre
 sudo apt-get install phonon-backend-gstreamer
-sudo apt-get install phonon-backend-vlc ```
+sudo apt-get install phonon-backend-vlc
+```
 
 #### Step 3: Compile and Install PCL:
 ```
@@ -130,7 +132,7 @@ TARGET_LINK_LIBRARIES(${PCL_LIBRARIES})
 #include <pcl/segmentation/extract_clusters.h>
 ```
 #### Load PointCloud in cpp project
-'''cpp
+```cpp
 CloudPointer loadCloudFromPath(std::string vPath){
     CloudPointer curCloud(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PCLPointCloud2 cloud_blob;
@@ -138,8 +140,7 @@ CloudPointer loadCloudFromPath(std::string vPath){
     pcl::fromPCLPointCloud2(cloud_blob, *curCloud);
     return curCloud;
 }
-'''
-
+```
 
 
 #### Visualize PointCloud in cpp project
