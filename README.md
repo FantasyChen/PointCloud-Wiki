@@ -133,6 +133,7 @@ TARGET_LINK_LIBRARIES(${PCL_LIBRARIES})
 ```
 #### Load PointCloud in cpp project
 ```cpp
+typedef  pcl::PointCloud<pcl::PointXYZ>::Ptr CloudPointer;
 CloudPointer loadCloudFromPath(std::string vPath){
     CloudPointer curCloud(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PCLPointCloud2 cloud_blob;
