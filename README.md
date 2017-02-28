@@ -141,6 +141,7 @@ CloudPointer loadCloudFromPath(std::string vPath){
     pcl::fromPCLPointCloud2(cloud_blob, *curCloud);
     return curCloud;
 }
+
 ```
 
 
@@ -165,3 +166,35 @@ void visualizeCloud(CloudPointer first, const std::string msg){
     }
 }
 ```
+
+---
+## Play _.bag_ files with RVIZ
+__Before this tutorial, make sure your computer has correctly install ROS, (Type roscore in temrinal to check)__ or see this link for help [Ubuntu ROS Installation](http://wiki.ros.org/indigo/Installation/Ubuntu).
+
+#### Step I
+Open the terminal and type
+```
+rviz
+```
+The window of rviz will pop up.
+
+
+#### Step II
+Open another terminal and type
+```
+rosbag info <your bagfile>
+```
+Here, _your bagfile_ is the file name of the bag file that you want to open. You will see the information of this bag file. Specifically, you could find the data type contains in this bag file, e.g. image, point clouds, etc.
+
+#### Step III
+In the terminal type
+```
+rosbag play <your bagfile>
+```
+
+Now, you bag file starts to play. You could stop at any time by pressing __space__ on your keyboard. But there is still nothing shows up in rviz. Don't worry, you will see it in the next step.
+
+#### Step IV
+Open rviz. Set the __fixed frame__ attribute in _Global Options_ to velodyne.  Press the __add__ button, and add the topics that you want to visualize and you see in the bag information. For image, it is in the _image raw_ and for point cloud it is in the _velodyne points - point cloud_.
+
+Now you should see image/point cloud playing in your rviz.
