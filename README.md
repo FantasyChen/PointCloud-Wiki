@@ -1,7 +1,7 @@
 ## PCL Installation and Simple Usage Guide
 > Author: Lifan Chen  
 Email: lifan.chen@tusimple.ai    
-Date: 02/27/2017
+Date: 05/17/2017
 
 
 ## Installation on Linux (Using PPA) (Recommedned)
@@ -89,49 +89,12 @@ TARGET_LINK_LIBRARIES(${PCL_LIBRARIES})
 #### Basic includes for PCL in .cpp/.h files:
 ```cpp
 #include <pcl/common/common_headers.h>
-#include <pcl/features/normal_3d.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/visualization/pcl_visualizer.h>
-#include <pcl/console/parse.h>
-#include <pcl/registration/icp.h>
-#include <pcl/registration/icp_nl.h>
-#include <pcl/registration/gicp.h>
-#include <pcl/filters/voxel_grid.h>
-#include <pcl/registration/transformation_validation_euclidean.h>
-
-#include <pcl/common/common_headers.h>
-#include <pcl/features/normal_3d.h>
-#include <pcl/io/pcd_io.h>
-#include <pcl/visualization/pcl_visualizer.h>
-#include <pcl/console/parse.h>
-#include <pcl/registration/icp.h>
-#include <pcl/registration/icp_nl.h>
-#include <pcl/registration/gicp.h>
-#include <pcl/registration/ia_ransac.h>
-#include <pcl/filters/voxel_grid.h>
-#include <pcl/registration/transformation_validation_euclidean.h>
-
-#include <pcl/ModelCoefficients.h>
-#include <pcl/sample_consensus/method_types.h>
-#include <pcl/sample_consensus/model_types.h>
-#include <pcl/segmentation/sac_segmentation.h>
-#include <pcl/registration/icp.h>
-#include <pcl/features/normal_3d.h>
-#include <pcl/features/fpfh.h>
-#include <pcl/features/shot.h>
-#include <pcl/search/kdtree.h>
-
-#include <boost/thread/thread.hpp>
-#include <boost/filesystem.hpp>
-#include <pcl-1.8/pcl/common/eigen.h>
-#include <pcl-1.8/pcl/registration/transformation_validation.h>
-
-
-#include <pcl/filters/extract_indices.h>
-#include <pcl/kdtree/kdtree.h>
-#include <pcl/segmentation/extract_clusters.h>
 ```
-#### Load PointCloud in cpp project
+
+#### Load PointCloud in code
+One way:
 ```cpp
 typedef  pcl::PointCloud<pcl::PointXYZ>::Ptr CloudPointer;
 CloudPointer loadCloudFromPath(std::string vPath){
@@ -141,11 +104,19 @@ CloudPointer loadCloudFromPath(std::string vPath){
     pcl::fromPCLPointCloud2(cloud_blob, *curCloud);
     return curCloud;
 }
+```  
 
+Another way:
+```cpp
+typedef PointXYZI PointType;
+typedef PointCloud<PointType>::Ptr CloudPointer;
+const string cloudPath = "./x.pcd";
+CloudPointer curCloud(new pcl::PointCloud<PointType>());
+(io::loadPCDFile<PointXYZI>)(cloudPath, *curCloud);
 ```
 
 
-#### Visualize PointCloud in cpp project
+#### Visualize PointCloud in cpp project. (Use of visualizer)
 ```cpp
 typedef  pcl::PointCloud<pcl::PointXYZ>::Ptr CloudPointer;
 void visualizeCloud(CloudPointer first, const std::string msg){
@@ -166,6 +137,25 @@ void visualizeCloud(CloudPointer first, const std::string msg){
     }
 }
 ```
+
+## Key class in PCL (important):
+
+#### Kdtree
+* Usage: radius search/k nearest search with fast speed.
+* Tutorial: [Kdtree](http://pointclouds.org/documentation/tutorials/kdtree_search.php)
+
+#### Eucliean Cluster Extraction
+* Usage: cluster based on eucliean distance between points.
+* Tutorial: [Eucliean Cluster Extraction](http://www.pointclouds.org/documentation/tutorials/cluster_extraction.php)
+
+#### Octree
+* Usage: Voxelize point cloud
+* Tutorial: [Octree](http://docs.pointclouds.org/1.7.1/group__octree.html)
+
+#### SACSegmentation
+* Usage: remove ground plane/fit other generic model in point cloud
+* Tutorial: [Plane removal](http://pointclouds.org/documentation/tutorials/planar_segmentation.php)
+
 
 ---
 ## Play _.bag_ files with RVIZ
