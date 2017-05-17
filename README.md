@@ -4,7 +4,7 @@ Email: lifan.chen@tusimple.ai
 Date: 05/17/2017
 
 
-## Installation on Linux (Using PPA) (Recommedned)
+## Installation on Linux (Using PPA)
 Reference: [Prebuilt binaries for Linux](http://pointclouds.org/downloads/linux.html)
 
 ### Ubuntu
@@ -24,7 +24,7 @@ sudo apt-get install libpcl-all
 
 ```
 
-## Installation on Linux (Make from source)
+## Installation on Linux (Make from source) (Recommedned)
 
 #### Step 1: Install PCL
 ```
